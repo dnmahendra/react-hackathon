@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d9cbe79e4e181d64b252"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "cd88fabbbb832ba5f8c7"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -8034,6 +8034,133 @@
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Header = _react2.default.createClass({
+	  displayName: 'Header',
+
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'header',
+	      null,
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'masthead' },
+	        _react2.default.createElement(
+	          'div',
+	          { 'class': 'container' },
+	          _react2.default.createElement(
+	            'a',
+	            { 'class': 'brand pull-left', href: '/' },
+	            _react2.default.createElement('img', { alt: 'RateCity.com.au', src: 'img/logo.svg' })
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { 'class': 'navbar-toggle', 'data-target': '#navbar-collapse', 'data-toggle': 'collapse', type: 'button' },
+	            _react2.default.createElement(
+	              'span',
+	              { 'class': 'sr-only' },
+	              'Toggle navigation'
+	            ),
+	            _react2.default.createElement('span', { 'class': 'icon-bar' }),
+	            _react2.default.createElement('span', { 'class': 'icon-bar' }),
+	            _react2.default.createElement('span', { 'class': 'icon-bar' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { 'class': 'visible-md visible-lg' },
+	            _react2.default.createElement(
+	              'div',
+	              { 'class': 'ad ad-leaderboard ad-leaderboard-top' },
+	              _react2.default.createElement(
+	                'small',
+	                null,
+	                'Advertisement'
+	              ),
+	              _react2.default.createElement('div', { id: 'dfp-leaderboard-top', 'class': 'google-dfp', style: 'width:728px;height:90px', 'data-size': '728x90', 'data-unit': '/115125416/leaderboard-top', 'data-targeting': '{"vertical":["credit-cards"]}' })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'ul',
+	            { 'class': 'hidden-xs' },
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              'Welcome to Australias leading financial comparison site'
+	            ),
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              _react2.default.createElement(
+	                'a',
+	                { href: '/about-us' },
+	                'About Us'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              _react2.default.createElement(
+	                'a',
+	                { href: '/contact-us' },
+	                'Contact Us'
+	              )
+	            )
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { 'class': 'container' },
+	        _react2.default.createElement(
+	          'ol',
+	          { 'class': 'breadcrumb' },
+	          _react2.default.createElement(
+	            'li',
+	            { 'typeof': 'breadcrumb' },
+	            _react2.default.createElement(
+	              'a',
+	              { rel: 'v:url', property: 'v:title', href: '/' },
+	              'Home'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            { 'typeof': 'breadcrumb' },
+	            _react2.default.createElement(
+	              'a',
+	              { rel: 'v:url', property: 'v:title', href: '/credit-cards/' },
+	              'Credit Cards'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            { 'class': 'active' },
+	            'Compare Credit Cards'
+	          )
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { 'class': 'container' },
+	        _react2.default.createElement(
+	          'div',
+	          { 'class': 'page-heading' },
+	          _react2.default.createElement('i', { 'class': 'icon icons-disc icon-credit-cards' }),
+	          _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Credit Cards',
+	            _react2.default.createElement(
+	              'small',
+	              { 'class': 'hidden-sm hidden-xs' },
+	              'Compare credit card interest rates and deals'
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
 
 	_reactDom2.default.render();
 
