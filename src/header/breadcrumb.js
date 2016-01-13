@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-var Breadcrumb = React.createClass({
+var RCBreadcrumb = React.createClass({
   render: function() {
     return (
         <div className='container'>
@@ -15,4 +15,4 @@ var Breadcrumb = React.createClass({
   }
 });
 
-export default Breadcrumb;
+export default RCBreadcrumb;

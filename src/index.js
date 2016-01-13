@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Header from './header/header';
-import Breadcrumb from './header/breadcrumb';
+import RCHeader from './header/header';
+import RCFooter from './footer/footer';
 
 ReactDOM.render(
   <div>
-    <Header />
-    <Breadcrumb />
+    <RCHeader />
+    <RCFooter />
   </div>,
   document.getElementById('react-body')
 );

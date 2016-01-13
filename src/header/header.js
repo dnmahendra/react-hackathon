@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-var Header = React.createClass({
+import RCTitle from './title';
+import RCBreadcrumb from './breadcrumb';
+import RCLeaderboard from './leaderboard';
+
+var RCHeader = React.createClass({
   render: function() {
     return (
       <header>
@@ -16,16 +20,9 @@ var Header = React.createClass({
               <span className='icon-bar'></span>
               <span className='icon-bar'></span>
             </button>
-            <div className='visible-md visible-lg'>
-              <div className='ad ad-leaderboard ad-leaderboard-top'>
-                <small>
-                  Advertisement
-                </small>
-                <div id="dfp-leaderboard-top" className="google-dfp" data-size="728x90" data-unit="/115125416/leaderboard-top" data-targeting="{&quot;vertical&quot;:[&quot;credit-cards&quot;]}"></div>
-              </div>
 
+            <RCLeaderboard />
 
-            </div>
             <ul className='hidden-xs'>
               <li>Welcome to Australias leading financial comparison site</li>
               <li><a href="/about-us">About Us</a></li>
@@ -34,20 +31,13 @@ var Header = React.createClass({
           </div>
         </div>
 
-        <div className='container'>
-          <div className='page-heading'>
-            <i className='icon icons-disc icon-credit-cards'></i>
-            <h1>
-              Credit Cards
-              <small className='hidden-sm hidden-xs'>Compare credit card interest rates and deals</small>
-            </h1>
-          </div>
-        </div>
+        <RCBreadcrumb />
 
+        <RCTitle />
 
       </header>
     );
   }
 });
 
-export default Header;
+export default RCHeader;
