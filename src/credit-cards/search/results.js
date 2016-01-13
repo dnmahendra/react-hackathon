@@ -3,7 +3,35 @@ import ReactDOM from 'react-dom';
 
 import RCFilters from './filters';
 
+import elasticsearch from 'elasticsearch';
+
+var client = new elasticsearch.Client({
+  host: 'http://search-dev-ratecity01-xxqfhvgnouqfnppttlgd3wu4du.ap-southeast-2.es.amazonaws.com/credit_cards-products/',
+  log: 'trace'
+});
+
 var RCResults = React.createClass({
+
+  getInitialState: function(){
+
+    return { results: [] };
+  },
+
+  componentWillMount: function() {
+    var self = this;
+    client.search({
+      q: 'anz'
+    }).then(
+      function (body) {
+        console.log("yeah" + self);
+        self.setState({ results: body.hits.hits })
+      },
+      function (error) {
+        console.trace(error.message);
+      }
+    );
+  },
+
   render: function() {
     return (
         <table className='table table-striped credit-card-table'>
