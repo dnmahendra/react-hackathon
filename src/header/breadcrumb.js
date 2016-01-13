@@ -15,7 +15,4 @@ var Breadcrumb = React.createClass({
   }
 });
 
-ReactDOM.render(
-  <Breadcrumb />,
-  document.getElementById('react-body')
-);
+export default Breadcrumb;

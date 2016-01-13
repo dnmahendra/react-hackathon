@@ -35,15 +35,6 @@ var Header = React.createClass({
         </div>
 
         <div className='container'>
-          <ol className='breadcrumb'>
-            <li typeof="breadcrumb"><a rel="v:url" property="v:title" href="/">Home</a></li>
-            <li typeof="breadcrumb"><a rel="v:url" property="v:title" href="/credit-cards/">Credit Cards</a></li>
-            <li className='active'>Compare Credit Cards</li>
-
-          </ol>
-        </div>
-
-        <div className='container'>
           <div className='page-heading'>
             <i className='icon icons-disc icon-credit-cards'></i>
             <h1>
@@ -59,7 +50,4 @@ var Header = React.createClass({
   }
 });
 
-ReactDOM.render(
-  <Header />,
-  document.getElementById('react-body')
-);
+export default Header;
