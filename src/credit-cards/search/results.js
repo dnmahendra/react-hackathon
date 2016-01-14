@@ -41,8 +41,7 @@ var RCResults = React.createClass({
 
   render: function() {
     var products = this.state.results.map(function(product) {
-      console.log(product);
-      return (<RCProduct name={product._source.name}/>);
+      return (<RCProduct product={product._source}/>);
     });
     console.log(products);
     return (
