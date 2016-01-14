@@ -8,7 +8,8 @@ import RCPagination from './pagination';
 import elasticsearch from 'elasticsearch';
 
 var client = new elasticsearch.Client({
-  host: 'http://search-dev-ratecity01-xxqfhvgnouqfnppttlgd3wu4du.ap-southeast-2.es.amazonaws.com'
+  host: 'http://localhost:9200'
+  // host: 'http://search-dev-ratecity01-xxqfhvgnouqfnppttlgd3wu4du.ap-southeast-2.es.amazonaws.com'
 });
 
 function filtersChangedCallbackCreate(component) {
