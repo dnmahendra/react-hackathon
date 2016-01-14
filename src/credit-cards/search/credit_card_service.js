@@ -5,7 +5,7 @@ var client = new elasticsearch.Client({
   host: 'http://search-dev-ratecity01-xxqfhvgnouqfnppttlgd3wu4du.ap-southeast-2.es.amazonaws.com'
 });
 
-var CreditCardRepository = {
+var CreditCardService = {
   find: function(search_details, onSuccess) {
     var filter_term = true;
     if (search_details.filters && search_details.filters.length > 0) {
@@ -49,4 +49,4 @@ var CreditCardRepository = {
   }
 };
 
-export default CreditCardRepository;
+export default CreditCardService;
