@@ -46,6 +46,7 @@ var RCFilters = React.createClass({
     };
   },
   render: function() {
+    console.log(this.props.aggregations);
     return (
       <aside className='col-md-3 facets sidebar-offcanvas'>
         <h2 className='offcanvas-title visible-xs visible-sm' data-toggle='offcanvas'>

@@ -13,12 +13,14 @@ var RCSliders = React.createClass({
   },
   render: function() {
     return (
-        <div className='panel panel-default'>
-          <div className='panel-heading'>
-            <h3 className='panel-title'>
-              ATM Withdraw amount
-              <input type="number" onChange={this.numberChanged} />
-            </h3>
+        <div className='sliders'>
+          <div className='panel panel-default'>
+            <div className='panel-heading'>
+              <h3 className='panel-title'>
+                ATM Withdraw amount
+                <input type="number" onChange={this.numberChanged} />
+              </h3>
+            </div>
           </div>
         </div>
     );
