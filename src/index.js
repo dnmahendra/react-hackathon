@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import elasticsearch from 'elasticsearch';
 
 import RCHeader from './header/header';
 import RCSearchPage from './credit-cards/search';
