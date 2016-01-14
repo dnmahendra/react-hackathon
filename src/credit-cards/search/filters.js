@@ -3,8 +3,25 @@ import ReactDOM from 'react-dom';
 import RCFilter from './filter';
 
 var RCFilters = React.createClass({
+  filterClickedCallback : function(filter_name) {
+    if (this.isSelected(filter_name)) {
+      var index = this.state.selectedFilters.indexOf(filter_name);
+      this.setState({
+        selectedFilters: this.state.selectedFilters.slice(0, index).concat(this.state.selectedFilters.slice(index+1, this.state.selectedFilters.count))
+      });
+    } else {
+      this.setState({
+        selectedFilters: this.state.selectedFilters.concat([filter_name])
+      });
+    }
+  },
+  isSelected : function(filter_name) {
+    return this.state.selectedFilters.indexOf(filter_name) != -1;
+  },
+  getInitialState: function(){
+    return {selectedFilters: ["overseas-spending"]};
+  },
   render: function() {
-    //console.log(this.props.filters);
     return (
       <aside className='col-md-3 facets sidebar-offcanvas'>
         <h2 className='offcanvas-title visible-xs visible-sm' data-toggle='offcanvas'>
@@ -17,12 +34,12 @@ var RCFilters = React.createClass({
             </h3>
           </div>
           <div className='list-group'>
-            <RCFilter count={this.props.filters.bucket_low_rates.doc_count} name="Low Rates" />
-            <RCFilter count={this.props.filters.bucket_low_fees.doc_count} name="Low Fees" />
-            <RCFilter count={this.props.filters.bucket_rewards.doc_count} name="Rewards" />
-            <RCFilter count={this.props.filters.bucket_frequent_flyer.doc_count} name="Frequent Flyer Rewards" />
-            <RCFilter count={this.props.filters.bucket_overseas_spending.doc_count} name="Overseas Spending" />
-            <RCFilter count={this.props.filters.bucket_perks.doc_count} name="Perks" />
+            <RCFilter count={this.props.filters.bucket_low_rates.doc_count} id="low-rates" name="Low Rates" onClick={this.filterClickedCallback} selected={ this.isSelected("low-rates") } />
+            <RCFilter count={this.props.filters.bucket_low_fees.doc_count} id="low-fees" name="Low Fees" onClick={this.filterClickedCallback} selected={ this.isSelected("low-fees") } />
+            <RCFilter count={this.props.filters.bucket_rewards.doc_count} id="rewards" name="Rewards" onClick={this.filterClickedCallback} selected={ this.isSelected("rewards") } />
+            <RCFilter count={this.props.filters.bucket_frequent_flyer.doc_count} id="frequent-flyer" name="Frequent Flyer Rewards" onClick={this.filterClickedCallback} selected={ this.isSelected("frequent-flyer") } />
+            <RCFilter count={this.props.filters.bucket_overseas_spending.doc_count} id="overseas-spending" name="Overseas Spending" selected={true} onClick={this.filterClickedCallback} selected={ this.isSelected("overseas-spending") } />
+            <RCFilter count={this.props.filters.bucket_perks.doc_count} id="perks" name="Perks" onClick={this.filterClickedCallback} selected={ this.isSelected("perks") } />
           </div>
         </div>
         <div className='panel panel-default'>
@@ -30,10 +47,10 @@ var RCFilters = React.createClass({
             <h3 className='panel-title'>With</h3>
           </div>
           <div className='list-group'>
-            <RCFilter count={this.props.filters.bucket_intro_offers.doc_count} name="Introductory Offers" />
-            <RCFilter count={this.props.filters.bucket_bt_intro_offers.doc_count} name="Balance Transfer Offers" />
-            <RCFilter count={this.props.filters.bucket_special_offers.doc_count} name="Special Offers" />
-            <RCFilter count={this.props.filters.bucket_all_offers.doc_count} name="All Offers" />
+            <RCFilter count={this.props.filters.bucket_intro_offers.doc_count} id="intro-offers" name="Introductory Offers" onClick={this.filterClickedCallback} selected={ this.isSelected("intro-offers") } />
+            <RCFilter count={this.props.filters.bucket_bt_intro_offers.doc_count} id="bt-offers" name="Balance Transfer Offers" onClick={this.filterClickedCallback} selected={ this.isSelected("bt-offers") } />
+            <RCFilter count={this.props.filters.bucket_special_offers.doc_count} id="special-offers" name="Special Offers" onClick={this.filterClickedCallback} selected={ this.isSelected("special-offers") } />
+            <RCFilter count={this.props.filters.bucket_all_offers.doc_count} id="all-offers" name="All Offers" onClick={this.filterClickedCallback} selected={ this.isSelected("all-offers") } />
           </div>
         </div>
         <div className='panel panel-default'>
@@ -41,7 +58,7 @@ var RCFilters = React.createClass({
             <h3 className='panel-title'>From</h3>
           </div>
           <div className='list-group'>
-            <RCFilter count={this.props.filters.bucket_big_four.doc_count} name="Big 4 Banks" />
+            <RCFilter count={this.props.filters.bucket_big_four.doc_count} id="big-banks" name="Big 4 Banks" onClick={this.filterClickedCallback} selected={ this.isSelected("big-banks") } />
             <RCFilter count={""} name="Visa" />
             <RCFilter count={""} name="MasterCard" />
             <RCFilter count={""} name="American Express" />
