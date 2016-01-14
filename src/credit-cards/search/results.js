@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import RCFilters from './filters';
 import RCProduct from './product';
-import RCPagination from './pagination';
 
 var RCResults = React.createClass({
 
@@ -13,7 +12,6 @@ var RCResults = React.createClass({
     });
     return (
       <div>
-          <RCPagination total={this.props.total} />
         <table className='table table-striped credit-card-table'>
           <tbody>
             <tr className='hidden-xs'>
@@ -36,7 +34,6 @@ var RCResults = React.createClass({
             {products}
           </tbody>
         </table>
-        <RCPagination total={this.props.total}/>
       </div>
     );
   }

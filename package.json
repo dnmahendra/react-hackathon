@@ -27,7 +27,6 @@
     "elasticsearch": "10.1.2 "
   },
   "dependencies": {
-    "classnames": "^2.2.3",
     "elasticsearch": "^10.1.2",
     "history": "^1.17.0",
     "react": "^0.14.6",
