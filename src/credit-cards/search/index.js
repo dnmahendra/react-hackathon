@@ -20,10 +20,10 @@ function filtersChangedCallbackCreate(component) {
 function queryElasticSearch(component, filters, card_types) {
   var filter_term = true;
   if (filters.length > 0) {
-    var buckets = "buckets:" + filters.join(" AND buckets:"));
+    var buckets = "buckets:" + filters.join(" AND buckets:");
     filter_term = {"query":{"query_string":{"query":buckets}}}
   }
-  var card_type_term = true;
+  var card_type_term = {"term":{"visible":true}};
   if (card_types.length > 0) {
     card_type_term = {
       "or": card_types.map(function(id){ return {"term": {"card_type": id}} })
