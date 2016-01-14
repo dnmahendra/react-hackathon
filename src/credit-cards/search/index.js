@@ -101,8 +101,8 @@ var RCSearchPage = React.createClass({
             <RCFilters filters={this.state.filters} onFiltersChanged={filtersChangedCallbackCreate(this)} />
           </aside>
           <div id="rc-results" className="col-md-9">
-            <RCResults results={this.state.results} total={this.state.total}/>
-            <RCPagination total={this.state.total} />
+            <RCResults results={this.state.results} />
+            <RCPagination totalRecords={this.state.total} selected={8}/>
           </div>
         </div>
       </div>

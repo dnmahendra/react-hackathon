@@ -17,31 +17,57 @@ var RCPageNumber = React.createClass({
 })
 
 var RCPagination = React.createClass({
-  getTotalPage: function() {
-    var total = this.props.total;
-    var size = 25;
-
-    return Math.ceil(total / size);
-  },
-
-  componentWillMount: function() {
-      return this.getTotalPage();
-  },
-
   render: function() {
+    var totalPages = Math.ceil(this.props.totalRecords / 1);
+    var selected = this.props.selected;
+    var pageRangeDisplayed = 5;
     var pages = [];
-    var totalPages = this.getTotalPage();
-    for (var i = 1; i <= totalPages; i++) {
-      pages.push(<RCPageNumber page={i} currentPage={1}/>)
+
+    if (totalPages <= pageRangeDisplayed) {
+      for (var i = 1; i <= totalPages; i++) {
+        pages.push(<RCPageNumber page={i} currentPage={selected}/>)
+      }
+    } else {
+      var leftSide  = (pageRangeDisplayed / 2);
+      var rightSide = (pageRangeDisplayed - leftSide);
+
+      if (selected > totalPages - pageRangeDisplayed / 2) {
+        rightSide = totalPages - selected;
+        leftSide  = pageRangeDisplayed - rightSide;
+      }
+      else if (selected < pageRangeDisplayed / 2) {
+        leftSide  = selected;
+        rightSide = pageRangeDisplayed - leftSide;
+      }
+
+      var index;
+      var page;
+
+      for (index = 1; index <= totalPages; index++) {
+        var pageView = (
+          <RCPageNumber page={index} currentPage={selected}/>
+        );
+
+        if ((index >= selected - leftSide) && (index <= selected + rightSide)) {
+          pages.push(<RCPageNumber page={index} currentPage={selected}/>)
+          continue;
+        }
+      }
     }
 
     return (
       <div className="pullout">
         <div className="pull-right">
           <ul className="pagination">
-            {pages}
+            <li className="first">
+              <a href="#">&laquo; First</a>
+            </li>
 
-            <li className="page gap disabled"><a href="javascript:void(0)">&hellip;</a></li>
+            <li className="prev">
+              <a rel="prev" href="">&lsaquo; Prev</a>
+            </li>
+
+            {pages}
 
             <li className="next">
               <a rel="next" href="/credit-cards/search?clicked_item=all_credit_cards_landing&amp;page=2">Next &rsaquo;</a>
