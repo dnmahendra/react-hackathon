@@ -7,9 +7,6 @@ import RCProduct from './product';
 var RCResults = React.createClass({
 
   render: function() {
-    var products = this.props.results.map(function(product) {
-      return (<RCProduct product={product._source}/>);
-    });
     return (
       <div>
         <table className='table table-striped credit-card-table'>
@@ -31,7 +28,13 @@ var RCResults = React.createClass({
               <th className='text-center' data-container='body' data-content='RateCity may receive remuneration for referrals to these links and/or as a consequence of a consumer acquiring a credit product after following these links.' data-placement='auto' data-toggle='popover'
               data-trigger='hover'>Go To Site</th>
             </tr>
-            {products}
+
+            {
+              this.props.results.map(function(product) {
+                return (<RCProduct product={product._source} key={product._id}/>);
+              })
+            }
+
           </tbody>
         </table>
       </div>
