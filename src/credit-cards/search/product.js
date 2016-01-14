@@ -52,7 +52,7 @@ var RCProduct = React.createClass({
           <div className='btn-compare fa fa-square-o' data-add-url='/credit-cards/comparison/202/add' data-product-id='202' data-remove-url='/credit-cards/comparison/202/remove'>Compare</div>
         </td>
         <td className='text-center xs-show-3'>
-          <img className="img-responsive" src={"http://placehold.it/88x31/?text="+product.company.name} />
+          <img className="img-responsive" src={product.company.logo.small.url}/>
         </td>
         <td className='xs-show-9 product-name'>
           <a data-ga-send="event" data-ga-category="Search Result" data-ga-action="Product Title Click" data-ga-label="frank credit card" href={'/credit-cards/' + product.company.slug + '/' + product.slug }>{product.name}
