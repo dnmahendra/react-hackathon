@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import classnames from 'classnames';
+
 var RCPageNumber = React.createClass({
+
   render: function() {
+    var pageClass = "page";
+    if (this.props.page === this.props.currentPage) {
+      pageClass += " active";
+    }
     return (
-      <li className="page">
-        <a href={"/credit-cards/search?clicked_item=all_credit_cards_landing&amp;page=" + this.props.page }>{this.props.page}</a>
+      <li className={pageClass}>
+        <a href={this.props.page}>{this.props.page}</a>
       </li>
     )
   }
@@ -27,17 +34,13 @@ var RCPagination = React.createClass({
     var pages = [];
     var totalPages = this.getTotalPage();
     for (var i = 1; i <= totalPages; i++) {
-      pages.push(<RCPageNumber page={i}/>)
+      pages.push(<RCPageNumber page={i} currentPage={1}/>)
     }
 
     return (
       <div className="pullout">
       <div className="pull-right">
         <ul className="pagination">
-
-          <li className="page active">
-            <a href="javascript:void(0)">1</a>
-          </li>
 
           {pages}
 

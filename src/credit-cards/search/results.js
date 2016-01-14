@@ -5,13 +5,6 @@ import RCFilters from './filters';
 import RCProduct from './product';
 import RCPagination from './pagination';
 
-import elasticsearch from 'elasticsearch';
-
-var client = new elasticsearch.Client({
-  host: 'http://search-dev-ratecity01-xxqfhvgnouqfnppttlgd3wu4du.ap-southeast-2.es.amazonaws.com/credit_cards-products/',
-  log: 'trace'
-});
-
 var RCResults = React.createClass({
 
   render: function() {
@@ -20,7 +13,7 @@ var RCResults = React.createClass({
     });
     return (
       <div>
-          <RCPagination total={this.state.total} />
+          <RCPagination total={this.props.total} />
         <table className='table table-striped credit-card-table'>
           <tbody>
             <tr className='hidden-xs'>
@@ -43,7 +36,7 @@ var RCResults = React.createClass({
             {products}
           </tbody>
         </table>
-        <RCPagination total={this.state.total}/>
+        <RCPagination total={this.props.total}/>
       </div>
     );
   }
