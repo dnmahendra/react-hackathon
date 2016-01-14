@@ -2,24 +2,31 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import RCFilter from './filter';
 
+function removeFilter(filters, filter_name) {
+  var index = filters.indexOf(filter_name);
+  return filters.slice(0, index).concat(filters.slice(index+1, filters.count));
+}
+
+
 var RCFilters = React.createClass({
+
   filterClickedCallback : function(filter_name) {
+    var filters = this.state.selectedFilters;
     if (this.isSelected(filter_name)) {
-      var index = this.state.selectedFilters.indexOf(filter_name);
-      this.setState({
-        selectedFilters: this.state.selectedFilters.slice(0, index).concat(this.state.selectedFilters.slice(index+1, this.state.selectedFilters.count))
-      });
+      filters = removeFilter(this.state.selectedFilters, filter_name);
     } else {
-      this.setState({
-        selectedFilters: this.state.selectedFilters.concat([filter_name])
-      });
+      filters = filters.concat([filter_name]);
     }
+    this.setState({
+      selectedFilters: filters
+    });
+    this.props.onFiltersChanged(filters);
   },
   isSelected : function(filter_name) {
     return this.state.selectedFilters.indexOf(filter_name) != -1;
   },
   getInitialState: function(){
-    return {selectedFilters: ["overseas-spending"]};
+    return {selectedFilters: ["low_rates"]};
   },
   render: function() {
     return (
@@ -34,11 +41,11 @@ var RCFilters = React.createClass({
             </h3>
           </div>
           <div className='list-group'>
-            <RCFilter count={this.props.filters.bucket_low_rates.doc_count} id="low-rates" name="Low Rates" onClick={this.filterClickedCallback} selected={ this.isSelected("low-rates") } />
-            <RCFilter count={this.props.filters.bucket_low_fees.doc_count} id="low-fees" name="Low Fees" onClick={this.filterClickedCallback} selected={ this.isSelected("low-fees") } />
+            <RCFilter count={this.props.filters.bucket_low_rates.doc_count} id="low_rates" name="Low Rates" onClick={this.filterClickedCallback} selected={ this.isSelected("low_rates") } />
+            <RCFilter count={this.props.filters.bucket_low_fees.doc_count} id="low_fees" name="Low Fees" onClick={this.filterClickedCallback} selected={ this.isSelected("low_fees") } />
             <RCFilter count={this.props.filters.bucket_rewards.doc_count} id="rewards" name="Rewards" onClick={this.filterClickedCallback} selected={ this.isSelected("rewards") } />
-            <RCFilter count={this.props.filters.bucket_frequent_flyer.doc_count} id="frequent-flyer" name="Frequent Flyer Rewards" onClick={this.filterClickedCallback} selected={ this.isSelected("frequent-flyer") } />
-            <RCFilter count={this.props.filters.bucket_overseas_spending.doc_count} id="overseas-spending" name="Overseas Spending" selected={true} onClick={this.filterClickedCallback} selected={ this.isSelected("overseas-spending") } />
+            <RCFilter count={this.props.filters.bucket_frequent_flyer.doc_count} id="frequent_flyer" name="Frequent Flyer Rewards" onClick={this.filterClickedCallback} selected={ this.isSelected("frequent_flyer") } />
+            <RCFilter count={this.props.filters.bucket_overseas_spending.doc_count} id="overseas_spending" name="Overseas Spending" selected={true} onClick={this.filterClickedCallback} selected={ this.isSelected("overseas_spending") } />
             <RCFilter count={this.props.filters.bucket_perks.doc_count} id="perks" name="Perks" onClick={this.filterClickedCallback} selected={ this.isSelected("perks") } />
           </div>
         </div>
@@ -47,10 +54,10 @@ var RCFilters = React.createClass({
             <h3 className='panel-title'>With</h3>
           </div>
           <div className='list-group'>
-            <RCFilter count={this.props.filters.bucket_intro_offers.doc_count} id="intro-offers" name="Introductory Offers" onClick={this.filterClickedCallback} selected={ this.isSelected("intro-offers") } />
-            <RCFilter count={this.props.filters.bucket_bt_intro_offers.doc_count} id="bt-offers" name="Balance Transfer Offers" onClick={this.filterClickedCallback} selected={ this.isSelected("bt-offers") } />
-            <RCFilter count={this.props.filters.bucket_special_offers.doc_count} id="special-offers" name="Special Offers" onClick={this.filterClickedCallback} selected={ this.isSelected("special-offers") } />
-            <RCFilter count={this.props.filters.bucket_all_offers.doc_count} id="all-offers" name="All Offers" onClick={this.filterClickedCallback} selected={ this.isSelected("all-offers") } />
+            <RCFilter count={this.props.filters.bucket_intro_offers.doc_count} id="intro_offers" name="Introductory Offers" onClick={this.filterClickedCallback} selected={ this.isSelected("intro_offers") } />
+            <RCFilter count={this.props.filters.bucket_bt_intro_offers.doc_count} id="bt_intro_offers" name="Balance Transfer Offers" onClick={this.filterClickedCallback} selected={ this.isSelected("bt_intro_offers") } />
+            <RCFilter count={this.props.filters.bucket_special_offers.doc_count} id="special_offers" name="Special Offers" onClick={this.filterClickedCallback} selected={ this.isSelected("special_offers") } />
+            <RCFilter count={this.props.filters.bucket_all_offers.doc_count} id="all_offers" name="All Offers" onClick={this.filterClickedCallback} selected={ this.isSelected("all_offers") } />
           </div>
         </div>
         <div className='panel panel-default'>
@@ -58,7 +65,7 @@ var RCFilters = React.createClass({
             <h3 className='panel-title'>From</h3>
           </div>
           <div className='list-group'>
-            <RCFilter count={this.props.filters.bucket_big_four.doc_count} id="big-banks" name="Big 4 Banks" onClick={this.filterClickedCallback} selected={ this.isSelected("big-banks") } />
+            <RCFilter count={this.props.filters.bucket_big_four.doc_count} id="big_four" name="Big 4 Banks" onClick={this.filterClickedCallback} selected={ this.isSelected("big_four") } />
             <RCFilter count={""} name="Visa" />
             <RCFilter count={""} name="MasterCard" />
             <RCFilter count={""} name="American Express" />
