@@ -5,6 +5,7 @@ import RCFilters from './filters';
 import RCProduct from './product';
 
 var RCResults = React.createClass({
+
   render: function() {
     var products = this.props.results.map(function(product) {
       return (<RCProduct name={product._source.name}/>);
