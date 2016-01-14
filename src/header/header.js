@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import RCTitle from './title';
 import RCBreadcrumb from './breadcrumb';
 import RCLeaderboard from './leaderboard';
+import RCNav from './nav';
 
 var RCHeader = React.createClass({
   render: function() {
@@ -31,9 +32,11 @@ var RCHeader = React.createClass({
           </div>
         </div>
 
+        <RCNav />
+
         <RCBreadcrumb />
 
-        <RCTitle />
+        <RCTitle vertical="Credit Cards ">Compare credit card interest rates and deals</RCTitle>
 
       </header>
     );
