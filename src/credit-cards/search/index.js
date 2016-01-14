@@ -5,11 +5,11 @@ import RCFilters from './filters';
 import RCResults from './results';
 import RCResultsBar from './resultsbar';
 import RCPagination from './pagination';
-import CreditCardRepository from './credit_card_repository';
+import CreditCardService from './credit_card_service';
 
 function filtersChangedCallbackCreate(component) {
   return function(filters, card_types, companies) {
-    CreditCardRepository.find({
+    CreditCardService.find({
       filters: filters,
       card_types: card_types,
       companies: companies
@@ -22,7 +22,7 @@ function filtersChangedCallbackCreate(component) {
 var RCSearchPage = React.createClass({
   componentWillMount: function() {
     var component = this;
-    CreditCardRepository.find({filters: ['low_rates']}, function (queryResults) {
+    CreditCardService.find({filters: ['low_rates']}, function (queryResults) {
       component.setState(queryResults);
     });
   },
