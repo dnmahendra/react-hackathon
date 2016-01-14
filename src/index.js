@@ -24,7 +24,10 @@ function queryElasticSearch() {
    "body": query
   }).then(
     function (body) {
-      RCSearchPage.setState({ results: body.hits.hits })
+      ReactDOM.render(
+        <RCSearchPage results={ body.hits.hits } />,
+        document.getElementById('search')
+      );
     },
     function (error) {
       console.trace(error.message);
@@ -35,10 +38,13 @@ function queryElasticSearch() {
 ReactDOM.render(
   <div>
     <RCHeader />
-    <RCSearchPage results={[]} />
+    <div id='search'>
+      <RCSearchPage results={[]} />
+    </div>
     <RCFooter />
   </div>,
   document.getElementById('react-body')
 );
 
 queryElasticSearch();
+
