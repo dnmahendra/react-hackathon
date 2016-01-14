@@ -8,7 +8,7 @@ import RCFooter from './footer/footer';
 ReactDOM.render(
   <div>
     <RCHeader />
-    <RCSearchPage/>
+    <RCSearchPage />
     <RCFooter />
   </div>,
   document.getElementById('react-body')

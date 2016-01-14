@@ -7,7 +7,6 @@ import elasticsearch from 'elasticsearch';
 
 var client = new elasticsearch.Client({
   host: 'http://search-dev-ratecity01-xxqfhvgnouqfnppttlgd3wu4du.ap-southeast-2.es.amazonaws.com'
-  // log: 'trace'
 });
 
 function queryElasticSearch(component) {
@@ -23,7 +22,8 @@ function queryElasticSearch(component) {
   }).then(
     function (body) {
       component.setState({
-        results: body.hits.hits
+        results: body.hits.hits,
+        filters: body.aggregations
       });
     },
     function (error) {
@@ -38,7 +38,22 @@ var RCSearchPage = React.createClass({
   },
 
   getInitialState: function(){
-    return { results: [] };
+    return {
+      filters: {
+        bucket_low_rates: {doc_count: 0},
+        bucket_low_fees: {doc_count: 0},
+        bucket_rewards: {doc_count: 0},
+        bucket_frequent_flyer: {doc_count: 0},
+        bucket_overseas_spending: {doc_count: 0},
+        bucket_perks: {doc_count: 0},
+        bucket_intro_offers: {doc_count: 0},
+        bucket_bt_intro_offers: {doc_count: 0},
+        bucket_special_offers: {doc_count: 0},
+        bucket_all_offers: {doc_count: 0},
+        bucket_big_four: {doc_count: 0}
+      },
+      results: []
+    };
   },
 
   render: function() {
@@ -46,7 +61,7 @@ var RCSearchPage = React.createClass({
       <div className="container">
         <div className='row row-offcanvas row-offcanvas-left'>
           <aside id="rc-filters" className='col-md-3 facets sidebar-offcanvas'>
-            <RCFilters />
+            <RCFilters filters={this.state.filters} />
           </aside>
           <div id="rc-results" className="col-md-9">
             <RCResults results={this.state.results} />
