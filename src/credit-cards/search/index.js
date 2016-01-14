@@ -20,7 +20,7 @@ function filtersChangedCallbackCreate(component) {
 function queryElasticSearch(component, filters, card_types) {
   var filter_term = true;
   if (filters.length > 0) {
-    var buckets = "buckets:" + filters.join(" AND buckets:"));
+    var buckets = "buckets:" + filters.join(" AND buckets:");
     filter_term = {"query":{"query_string":{"query":buckets}}}
   }
   var card_type_term = true;
