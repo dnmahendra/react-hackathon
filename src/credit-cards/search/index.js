@@ -8,32 +8,38 @@ import RCPagination from './pagination';
 import elasticsearch from 'elasticsearch';
 
 var client = new elasticsearch.Client({
-  host: 'http://localhost:9200'
-  // host: 'http://search-dev-ratecity01-xxqfhvgnouqfnppttlgd3wu4du.ap-southeast-2.es.amazonaws.com'
+  // host: 'http://localhost:9200'
+  host: 'http://search-dev-ratecity01-xxqfhvgnouqfnppttlgd3wu4du.ap-southeast-2.es.amazonaws.com'
 });
 
 function filtersChangedCallbackCreate(component) {
   return function(filters, card_types, companies) {
-    queryElasticSearch(component, filters, card_types, companies);
+    queryElasticSearch({
+      filters: filters,
+      card_types: card_types,
+      companies: companies
+    }, function (queryResults) {
+      component.setState(queryResults);
+    });
   }
 }
 
-function queryElasticSearch(component, filters, card_types, companies) {
+function queryElasticSearch(search_details, onSuccess) {
   var filter_term = true;
-  if (filters.length > 0) {
-    var buckets = "buckets:" + filters.join(" AND buckets:");
+  if (search_details.filters && search_details.filters.length > 0) {
+    var buckets = "buckets:" + search_details.filters.join(" AND buckets:");
     filter_term = {"query":{"query_string":{"query":buckets}}}
   }
   var card_type_term = {"term":{"visible":true}};
-  if (card_types.length > 0) {
+  if (search_details.card_types && search_details.card_types.length > 0) {
     card_type_term = {
       "or": card_types.map(function(id){ return {"term": {"card_type": id}} })
     };
   }
   var companies_term = {"term":{"visible":true}};
-  if (companies.length > 0) {
+  if (search_details.companies && search_details.companies.length > 0) {
     companies_term = {
-      "or": companies.map(function(id){ return {"term": {"company_id": id}} })
+      "or": search_details.companies.map(function(id){ return {"term": {"company_id": id}} })
     };
   }
   var query = {
@@ -46,13 +52,13 @@ function queryElasticSearch(component, filters, card_types, companies) {
    "index": "credit_cards-products",
    "type": "product",
    "body": query
-  }).then(
-    function (body) {
-      component.setState({
+ }).then(
+    function(body){
+      onSuccess( {
         results: body.hits.hits,
         filters: body.aggregations,
         total: body.hits.total
-      });
+      } );
     },
     function (error) {
       console.trace(error.message);
@@ -62,7 +68,10 @@ function queryElasticSearch(component, filters, card_types, companies) {
 
 var RCSearchPage = React.createClass({
   componentWillMount: function() {
-    queryElasticSearch(this, ["low_rates"], [], []);
+    var component = this;
+    queryElasticSearch({filters: ['low_rates']}, function (queryResults) {
+      component.setState(queryResults);
+    });
   },
 
   getInitialState: function(){
