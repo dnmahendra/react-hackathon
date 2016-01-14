@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import RCFilters from './filters';
 import RCResults from './results';
+import RCResultsBar from './resultsbar';
 import RCPagination from './pagination';
 
 import elasticsearch from 'elasticsearch';
@@ -95,17 +96,20 @@ var RCSearchPage = React.createClass({
 
   render: function() {
     return (
-      <div className="container">
-        <div className='row row-offcanvas row-offcanvas-left'>
-          <aside id="rc-filters" className='col-md-3 facets sidebar-offcanvas'>
-            <RCFilters filters={this.state.filters} onFiltersChanged={filtersChangedCallbackCreate(this)} />
-          </aside>
-          <div id="rc-results" className="col-md-9">
-            <RCResults results={this.state.results} />
-            <RCPagination totalRecords={this.state.total} selected={8}/>
+      <main>
+        <RCResultsBar totalRecords={this.state.total} pagesize={10} currentpage={1} />
+        <div className="container">
+          <div className='row row-offcanvas row-offcanvas-left'>
+            <aside id="rc-filters" className='col-md-3 facets sidebar-offcanvas'>
+              <RCFilters filters={this.state.filters} onFiltersChanged={filtersChangedCallbackCreate(this)} />
+            </aside>
+            <div id="rc-results" className="col-md-9">
+              <RCResults results={this.state.results} />
+              <RCPagination totalRecords={this.state.total} selected={8}/>
+            </div>
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 });
