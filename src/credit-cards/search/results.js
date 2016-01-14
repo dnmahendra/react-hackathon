@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import RCFilters from './filters';
 import RCProduct from './product';
 
 var RCResults = React.createClass({
 
   render: function() {
+    var input = this.props.input;
     return (
       <div>
         <table className='table table-striped credit-card-table'>
@@ -31,7 +31,7 @@ var RCResults = React.createClass({
 
             {
               this.props.results.map(function(product) {
-                return (<RCProduct product={product._source} key={product._id}/>);
+                return (<RCProduct product={product._source} key={product._id} input={input} />);
               })
             }
 

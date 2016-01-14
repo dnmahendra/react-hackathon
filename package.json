@@ -33,6 +33,7 @@
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-router": "^1.0.3",
-    "selectize": "^0.12.1"
+    "selectize": "^0.12.1",
+    "bootstrap-slider": "6.0"
   }
 }

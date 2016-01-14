@@ -28,8 +28,7 @@ var RCSearchPage = React.createClass({
     });
   },
   osSpendingCallback : function(val) {
-    alert(val);
-    this.setState({osSpendingAmount: val});
+    this.setState({input: {osSpendingAmount: val}});
   },
   getInitialState: function(){
     return {
@@ -47,7 +46,10 @@ var RCSearchPage = React.createClass({
         bucket_big_four: {doc_count: 0}
       },
       results: [],
-      osSpendingAmount: 100
+      input: {
+        osSpendingAmount: 100
+      }
+
     };
   },
 
@@ -57,14 +59,16 @@ var RCSearchPage = React.createClass({
         <RCResultsBar totalRecords={this.state.total} pagesize={10} currentpage={1} />
         <div className="container">
           <div className='row row-offcanvas row-offcanvas-left'>
-            <div id="rc-sliders">
-              <RCSliders osSpendingCallback={this.osSpendingCallback}/>
-            </div>
             <aside id="rc-filters" className='col-md-3 facets sidebar-offcanvas'>
-              <RCFilters filters={this.state.filters} onFiltersChanged={filtersChangedCallbackCreate(this)} />
+              <div id="rc-sliders">
+                <RCSliders osSpendingCallback={this.osSpendingCallback} />
+              </div>
+              <div id="rc-filters">
+                <RCFilters filters={this.state.filters} onFiltersChanged={filtersChangedCallbackCreate(this)} />
+              </div>
             </aside>
             <div id="rc-results" className="col-md-9">
-              <RCResults results={this.state.results} />
+              <RCResults results={this.state.results} input={this.state.input} />
               <RCPagination totalRecords={this.state.total} selected={8}/>
             </div>
           </div>
