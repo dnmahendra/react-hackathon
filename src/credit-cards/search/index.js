@@ -20,12 +20,14 @@ function filtersChangedCallbackCreate(component) {
 function queryElasticSearch(component, filters, card_types) {
   var filter_term = true;
   if (filters.length > 0) {
-    var buckets = filters.length > 0 ? ("buckets:" + filters.join(" AND buckets:")) : ""
+    var buckets = "buckets:" + filters.join(" AND buckets:"));
     filter_term = {"query":{"query_string":{"query":buckets}}}
   }
   var card_type_term = true;
   if (card_types.length > 0) {
-    card_type_term = {"or":[{"term":{"card_type":1}},{}]};
+    card_type_term = {
+      "or": card_types.map(function(id){ return {"term": {"card_type": id}} })
+    };
   }
 
   var query = {

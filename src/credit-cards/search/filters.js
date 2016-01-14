@@ -20,13 +20,31 @@ var RCFilters = React.createClass({
     this.setState({
       selectedFilters: filters
     });
-    this.props.onFiltersChanged(filters, []);
+    this.props.onFiltersChanged(filters, this.state.selectedCardTypes);
+  },
+  cardTypeClickedCallback : function(filter_name) {
+    var cardTypes = this.state.selectedCardTypes;
+    if (this.cardIsSelected(filter_name)) {
+      cardTypes = removeFilter(this.state.selectedCardTypes, filter_name);
+    } else {
+      cardTypes = cardTypes.concat([filter_name]);
+    }
+    this.setState({
+      selectedCardTypes: cardTypes
+    });
+    this.props.onFiltersChanged(this.state.selectedFilters, cardTypes);
   },
   isSelected : function(filter_name) {
     return this.state.selectedFilters.indexOf(filter_name) != -1;
   },
+  cardIsSelected : function(card_type_name) {
+    return this.state.selectedCardTypes.indexOf(card_type_name) != -1;
+  },
   getInitialState: function(){
-    return {selectedFilters: ["low_rates"], selectedCards: []};
+    return {
+      selectedFilters: ["low_rates"],
+      selectedCardTypes: []
+    };
   },
   render: function() {
     return (
@@ -66,9 +84,9 @@ var RCFilters = React.createClass({
           </div>
           <div className='list-group'>
             <RCFilter count={this.props.filters.bucket_big_four.doc_count} id="big_four" name="Big 4 Banks" onClick={this.filterClickedCallback} selected={ this.isSelected("big_four") } />
-            <RCFilter count={""} name="Visa" id="visa" onClick={this.filterClickedCallback} selected={ this.isSelected("visa") } />
-            <RCFilter count={""} name="MasterCard" id="mastercard" onClick={this.filterClickedCallback} selected={ this.isSelected("mastercard") }  />
-            <RCFilter count={""} name="American Express" id="amex" onClick={this.filterClickedCallback} selected={ this.isSelected("amex") }  />
+            <RCFilter count={""} name="Visa" id="1" onClick={this.cardTypeClickedCallback} selected={ this.cardIsSelected("1") } />
+            <RCFilter count={""} name="MasterCard" id="2" onClick={this.cardTypeClickedCallback} selected={ this.cardIsSelected("2") }  />
+            <RCFilter count={""} name="American Express" id="3" onClick={this.cardTypeClickedCallback} selected={ this.cardIsSelected("3") }  />
             <div className='list-group-item'>
               <select name="companies[]" id="company-selector" multiple="multiple" data-placeholder="Enter bank or provider name">
                 <option value="adcu">ADCU</option>
