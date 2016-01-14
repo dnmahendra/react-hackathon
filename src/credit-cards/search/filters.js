@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 var RCFilters = React.createClass({
   render: function() {
+    //console.log(this.props.filters);
     return (
       <aside class='col-md-3 facets sidebar-offcanvas'>
         <h2 class='offcanvas-title visible-xs visible-sm' data-toggle='offcanvas'>
@@ -17,42 +18,41 @@ var RCFilters = React.createClass({
           <div class='list-group'>
             <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=low_rates&amp;size=25&amp;sort=low_rates&amp;view=rates">
               <div class='pull-right'>
-                <span class='badge'>65</span>
+                <span class='badge'>{this.props.filters.bucket_low_rates.doc_count}</span>
               </div>
               <i class='fa fa-sort-amount-asc'></i> Low Rates
-
             </a>
             <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=low_fees&amp;size=25&amp;sort=low_fees&amp;view=rates">
               <div class='pull-right'>
-                <span class='badge'>73</span>
+                <span class='badge'>{this.props.filters.bucket_low_fees.doc_count}</span>
               </div>
               <i class='fa fa-dollar'></i> Low Fees
 
             </a>
             <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=rewards&amp;size=25&amp;sort=reward_points&amp;view=rewards">
               <div class='pull-right'>
-                <span class='badge'>49</span>
+                <span class='badge'>{this.props.filters.bucket_rewards.doc_count}</span>
               </div>
               <i class='fa fa-trophy'></i> Rewards
 
             </a>
             <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=frequent_flyer&amp;size=25&amp;sort=frequent_flyer&amp;view=frequent_flyer">
               <div class='pull-right'>
-                <span class='badge'>58</span>
+                <span class='badge'>{this.props.filters.bucket_frequent_flyer.doc_count}</span>
               </div>
               <i class='fa fa-plane'></i> Frequent Flyer Rewards
 
             </a>
             <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=overseas_spending&amp;size=25&amp;sort=overseas_spending&amp;view=overseas">
               <div class='pull-right'>
-                <span class='badge'>30</span>
+                <span class='badge'>{this.props.filters.bucket_overseas_spending.doc_count}</span>
               </div>
               <i class='fa fa-globe'></i> Overseas Spending
 
             </a>
             <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=perks&amp;size=25&amp;sort=perks&amp;view=perks">
               <div class='pull-right'>
-                <span class='badge'>103</span>
+                <span class='badge'>{this.props.filters.bucket_perks.doc_count}</span>
               </div>
               <i class='fa fa-suitcase'></i> Perks
 
@@ -67,28 +67,28 @@ var RCFilters = React.createClass({
           <div class='list-group'>
             <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=intro_offers&amp;size=25&amp;sort=purchase_rate&amp;view=deals">
               <div class='pull-right'>
-                <span class='badge'>16</span>
+                <span class='badge'>{this.props.filters.bucket_intro_offers.doc_count}</span>
               </div>
               <i class='fa fa-leaf'></i> Introductory Offers
 
             </a>
             <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=bt_intro_offers&amp;size=25&amp;sort=balance_transfer&amp;view=balance_transfers">
               <div class='pull-right'>
-                <span class='badge'>135</span>
+                <span class='badge'>{this.props.filters.bucket_bt_intro_offers.doc_count}</span>
               </div>
               <i class='fa fa-exchange'></i> Balance Transfer Offers
 
             </a>
             <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=special_offers&amp;size=25&amp;sort=special_offers&amp;view=deals">
               <div class='pull-right'>
-                <span class='badge'>49</span>
+                <span class='badge'>{this.props.filters.bucket_special_offers.doc_count}</span>
               </div>
               <i class='fa fa-tags'></i> Special Offers
 
             </a>
             <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=all_offers&amp;size=25&amp;sort=balance_transfer&amp;view=deals">
               <div class='pull-right'>
-                <span class='badge'>136</span>
+                <span class='badge'>{this.props.filters.bucket_all_offers.doc_count}</span>
               </div>
               <i class='fa fa-check'></i> All Offers
 
@@ -104,7 +104,7 @@ var RCFilters = React.createClass({
 
             <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=big_four&amp;size=25&amp;sort=low_rates&amp;view=rates">
               <div class='pull-right'>
-                <span class='badge'>34</span>
+                <span class='badge'>{this.props.filters.bucket_big_four.doc_count}</span>
               </div>
               <i class='fa fa-bank'></i> Big 4 Banks
 

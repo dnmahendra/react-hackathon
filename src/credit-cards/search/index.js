@@ -6,8 +6,7 @@ import RCResults from './results';
 import elasticsearch from 'elasticsearch';
 
 var client = new elasticsearch.Client({
-  host: 'http://search-dev-ratecity01-xxqfhvgnouqfnppttlgd3wu4du.ap-southeast-2.es.amazonaws.com',
-  log: 'trace'
+  host: 'http://search-dev-ratecity01-xxqfhvgnouqfnppttlgd3wu4du.ap-southeast-2.es.amazonaws.com'
 });
 
 function queryElasticSearch() {
@@ -24,8 +23,12 @@ function queryElasticSearch() {
   }).then(
     function (body) {
       ReactDOM.render(
-        <RCResults results={ body.hits.hits } />,
+        <RCResults results={ body.hits.hits } filters={body.aggregations} />,
         document.getElementById('rc-results')
+      );
+      ReactDOM.render(
+        <RCFilters filters={body.aggregations} />,
+        document.getElementById('rc-filters')
       );
     },
     function (error) {
@@ -40,7 +43,6 @@ var RCSearchPage = React.createClass({
       <div className="container">
         <div className='row row-offcanvas row-offcanvas-left'>
           <aside id="rc-filters" className='col-md-3 facets sidebar-offcanvas'>
-            <RCFilters />
           </aside>
           <div id="rc-results" className="col-md-9">
             Loading...
