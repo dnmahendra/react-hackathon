@@ -7,7 +7,7 @@ import RCProduct from './product';
 var RCResults = React.createClass({
 
   render: function() {
-    var products = this.state.results.map(function(product) {
+    var products = this.props.results.map(function(product) {
       return (<RCProduct product={product._source}/>);
     });
     return (
