@@ -11,6 +11,7 @@ var RCResults = React.createClass({
       return (<RCProduct product={product._source}/>);
     });
     return (
+      <div>
         <table className='table table-striped credit-card-table'>
           <tbody>
             <tr className='hidden-xs'>
@@ -33,6 +34,7 @@ var RCResults = React.createClass({
             {products}
           </tbody>
         </table>
+      </div>
     );
   }
 });

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 
 import RCFilters from './filters';
 import RCResults from './results';
+import RCPagination from './pagination';
+
 import elasticsearch from 'elasticsearch';
 
 var client = new elasticsearch.Client({
@@ -23,7 +25,8 @@ function queryElasticSearch(component) {
     function (body) {
       component.setState({
         results: body.hits.hits,
-        filters: body.aggregations
+        filters: body.aggregations,
+        total: body.hits.total
       });
     },
     function (error) {
@@ -64,7 +67,8 @@ var RCSearchPage = React.createClass({
             <RCFilters filters={this.state.filters} />
           </aside>
           <div id="rc-results" className="col-md-9">
-            <RCResults results={this.state.results} />
+            <RCResults results={this.state.results} total={this.state.total}/>
+            <RCPagination total={this.state.total} />
           </div>
         </div>
       </div>
