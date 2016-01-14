@@ -65,6 +65,7 @@ var RCSearchPage = React.createClass({
     queryElasticSearch(this, ["low_rates"], [], []);
   },
   osSpendingCallback : function(val) {
+    alert(val);
     this.setState({osSpendingAmount: val});
   },
   getInitialState: function(){
