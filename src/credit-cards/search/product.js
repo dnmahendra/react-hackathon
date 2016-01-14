@@ -6,6 +6,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 var RCProduct = React.createClass({
+  calculateATMWithdrawal: function() {
+
+  },
   render: function() {
     var product = this.props.product;
 
@@ -57,7 +60,11 @@ var RCProduct = React.createClass({
             ${product.late_payment_fee_currency}
           </strong>
         </td>
-
+        <td className='text-center hidden-xs'>
+          <strong>
+            -
+          </strong>
+        </td>
         <td className='text-center xs-show-12'>
           <a className="btn btn-primary" target="_blank" data-ga-send="event" data-ga-category="Search Result" data-ga-action="Apply Click" data-ga-label="frank credit card"
             href={"/credit-cards/promotions/" +product.id+ "/click?filters=&amp;type=goto_site"}

@@ -27,7 +27,7 @@ var RCResults = React.createClass({
               <th className='text-center'>Annual Fee</th>
               <th className='text-center'>Max Free Days</th>
               <th className='text-center'>Late Payment Fee</th>
-
+              <th className='text-center'>Overseas ATM Withdrawal</th>
               <th className='text-center' data-container='body' data-content='RateCity may receive remuneration for referrals to these links and/or as a consequence of a consumer acquiring a credit product after following these links.' data-placement='auto' data-toggle='popover'
               data-trigger='hover'>Go To Site</th>
             </tr>

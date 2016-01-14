@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import RCFilters from './filters';
 import RCResults from './results';
+import RCSliders from './sliders';
 import RCPagination from './pagination';
 
 import elasticsearch from 'elasticsearch';
@@ -63,7 +64,9 @@ var RCSearchPage = React.createClass({
   componentWillMount: function() {
     queryElasticSearch(this, ["low_rates"], [], []);
   },
-
+  osSpendingCallback : function(val) {
+    this.setState({osSpendingAmount: val});
+  },
   getInitialState: function(){
     return {
       filters: {
@@ -79,7 +82,8 @@ var RCSearchPage = React.createClass({
         bucket_all_offers: {doc_count: 0},
         bucket_big_four: {doc_count: 0}
       },
-      results: []
+      results: [],
+      osSpendingAmount: 100
     };
   },
 
@@ -87,11 +91,16 @@ var RCSearchPage = React.createClass({
     return (
       <div className="container">
         <div className='row row-offcanvas row-offcanvas-left'>
-          <aside id="rc-filters" className='col-md-3 facets sidebar-offcanvas'>
-            <RCFilters filters={this.state.filters} onFiltersChanged={filtersChangedCallbackCreate(this)} />
+          <aside id="" className='col-md-3 facets sidebar-offcanvas'>
+            <div id="rc-sliders">
+              <RCSliders osSpendingCallback={this.osSpendingCallback}/>
+            </div>
+            <div id='rc-filters'>
+              <RCFilters filters={this.state.filters} onFiltersChanged={filtersChangedCallbackCreate(this)} />
+            </div>
           </aside>
           <div id="rc-results" className="col-md-9">
-            <RCResults results={this.state.results} total={this.state.total}/>
+            <RCResults results={this.state.results} total={this.state.total} osSpendingAmount={this.state.osSpendingAmount}/>
             <RCPagination total={this.state.total} />
           </div>
         </div>
