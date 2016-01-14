@@ -21,7 +21,7 @@ var RCFooter = React.createClass({
                 <span>AFSL &amp; ACL 316710</span>
               </li>
               <li>
-                <span>&copy; 201 RateCity</span>
+                <span>&copy; 2016 RateCity</span>
               </li>
             </ul>
           </div>
