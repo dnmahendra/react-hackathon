@@ -1,22 +1,50 @@
 // NOT IN ES:
-// - promotion info: url, id
 // - company logo
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import CardTypes from './card-types'
+
 var RCProduct = React.createClass({
   render: function() {
     var product = this.props.product;
 
-    var card_types = {
-      '1': 'visa',
-      '2': 'mastercard',
-      '3': 'american_express',
-      '4': 'diners_club'
-    }
+    var card_type_logo = '/img/card_types/'+ CardTypes[product.card_type] + '.png';
 
-    var card_type_logo = '/img/card_types/'+ card_types[product.card_type] + '.png';
+    var promotion = product.promotions.filter(
+      function (promotion) {
+        return promotion.regions.includes("promoted_search")
+      }
+    ).pop();
+
+    var action_button;
+
+    if (promotion) {
+      action_button = (
+        <a
+          className="btn btn-primary"
+          target="_blank"
+          data-ga-send="event"
+          data-ga-category="Search Result"
+          data-ga-action="Apply Click"
+          data-ga-label={ product.company.name + ' ' + product.name}
+          href={"/credit-cards/promotions/" +promotion.id+ "/click?filters=&amp;type=goto_site"}
+        >Go to Site</a>
+      );
+
+    } else {
+      action_button = (
+        <a
+          className="btn btn-default"
+          data-ga-send="event"
+          data-ga-category="Search Result"
+          data-ga-action="Product Details Button Click"
+          data-ga-label={ product.company.name + ' ' + product.name}
+          href={'/credit-cards/' + product.company.slug + '/' + product.slug }
+        >Details</a>
+      )
+    }
 
     return (
       <tr>
@@ -59,9 +87,7 @@ var RCProduct = React.createClass({
         </td>
 
         <td className='text-center xs-show-12'>
-          <a className="btn btn-primary" target="_blank" data-ga-send="event" data-ga-category="Search Result" data-ga-action="Apply Click" data-ga-label="frank credit card"
-            href={"/credit-cards/promotions/" +product.id+ "/click?filters=&amp;type=goto_site"}
-          >Go to Site</a>
+          {action_button}
         </td>
       </tr>
     );
