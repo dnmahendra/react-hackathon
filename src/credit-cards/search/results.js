@@ -5,12 +5,11 @@ import RCFilters from './filters';
 import RCProduct from './product';
 
 var RCResults = React.createClass({
+
   render: function() {
     var products = this.props.results.map(function(product) {
-      console.log(product);
       return (<RCProduct name={product._source.name}/>);
     });
-    console.log(products);
     return (
         <table className='table table-striped credit-card-table'>
           <tbody>
