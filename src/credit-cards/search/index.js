@@ -13,7 +13,7 @@ var RCSearchPage = React.createClass({
             <RCFilters />
           </aside>
           <div className="col-md-9">
-            <RCResults />
+            <RCResults results={this.state.results}/>
           </div>
         </div>
       </div>
