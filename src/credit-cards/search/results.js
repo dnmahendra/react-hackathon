@@ -7,8 +7,8 @@ import RCProduct from './product';
 var RCResults = React.createClass({
 
   render: function() {
-    var products = this.props.results.map(function(product) {
-      return (<RCProduct name={product._source.name}/>);
+    var products = this.state.results.map(function(product) {
+      return (<RCProduct product={product._source}/>);
     });
     return (
         <table className='table table-striped credit-card-table'>
