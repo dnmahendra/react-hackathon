@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactPaginate from 'react-paginate';
 
 var RCPageNumber = React.createClass({
 
@@ -39,16 +38,19 @@ var RCPagination = React.createClass({
     return (
       <div className="pullout">
         <div className="pull-right">
-          <ReactPaginate previousLabel={"prev"}
-                         previousClassName={"prev"}
-                         nextLabel={"next"}
-                         breakLabel={<li className="break"><a href="">...</a></li>}
-                         pageNum={totalPages}
-                         marginPagesDisplayed={2}
-                         pageRangeDisplayed={5}
-                         containerClassName={"pagination"}
-                         subContainerClassName={"pages pagination"}
-                         activeClassName={"active"} />
+          <ul className="pagination">
+            {pages}
+
+            <li className="page gap disabled"><a href="javascript:void(0)">&hellip;</a></li>
+
+            <li className="next">
+              <a rel="next" href="/credit-cards/search?clicked_item=all_credit_cards_landing&amp;page=2">Next &rsaquo;</a>
+            </li>
+
+            <li className="last">
+              <a href="/credit-cards/search?clicked_item=all_credit_cards_landing&amp;page=8">Last &raquo;</a>
+            </li>
+          </ul>
         </div>
         <span className='p'>
           Now showing
