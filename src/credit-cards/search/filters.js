@@ -1,51 +1,125 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RCFilter from './filter';
 
 var RCFilters = React.createClass({
   render: function() {
-    //console.log(this.props.filters);
     return (
-      <aside className='col-md-3 facets sidebar-offcanvas'>
-        <h2 className='offcanvas-title visible-xs visible-sm' data-toggle='offcanvas'>
-          <i className='fa fa-close pull-right'></i> Refine
+      <aside class='col-md-3 facets sidebar-offcanvas'>
+        <h2 class='offcanvas-title visible-xs visible-sm' data-toggle='offcanvas'>
+          <i class='fa fa-close pull-right'></i> Refine
         </h2>
-        <div className='panel panel-default' id='facet-bucket'>
-          <div className='panel-heading'>
-            <h3 className='panel-title'>
+        <div class='panel panel-default' id='facet-bucket'>
+          <div class='panel-heading'>
+            <h3 class='panel-title'>
               Show
             </h3>
           </div>
-          <div className='list-group'>
-            <RCFilter count={this.props.filters.bucket_low_rates.doc_count} name="Low Rates" />
-            <RCFilter count={this.props.filters.bucket_low_fees.doc_count} name="Low Fees" />
-            <RCFilter count={this.props.filters.bucket_rewards.doc_count} name="Rewards" />
-            <RCFilter count={this.props.filters.bucket_frequent_flyer.doc_count} name="Frequent Flyer Rewards" />
-            <RCFilter count={this.props.filters.bucket_overseas_spending.doc_count} name="Overseas Spending" />
-            <RCFilter count={this.props.filters.bucket_perks.doc_count} name="Perks" />
+          <div class='list-group'>
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=low_rates&amp;size=25&amp;sort=low_rates&amp;view=rates">
+              <div class='pull-right'>
+                <span class='badge'>65</span>
+              </div>
+              <i class='fa fa-sort-amount-asc'></i> Low Rates
+
+            </a>
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=low_fees&amp;size=25&amp;sort=low_fees&amp;view=rates">
+              <div class='pull-right'>
+                <span class='badge'>73</span>
+              </div>
+              <i class='fa fa-dollar'></i> Low Fees
+
+            </a>
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=rewards&amp;size=25&amp;sort=reward_points&amp;view=rewards">
+              <div class='pull-right'>
+                <span class='badge'>49</span>
+              </div>
+              <i class='fa fa-trophy'></i> Rewards
+
+            </a>
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=frequent_flyer&amp;size=25&amp;sort=frequent_flyer&amp;view=frequent_flyer">
+              <div class='pull-right'>
+                <span class='badge'>58</span>
+              </div>
+              <i class='fa fa-plane'></i> Frequent Flyer Rewards
+
+            </a>
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=overseas_spending&amp;size=25&amp;sort=overseas_spending&amp;view=overseas">
+              <div class='pull-right'>
+                <span class='badge'>30</span>
+              </div>
+              <i class='fa fa-globe'></i> Overseas Spending
+
+            </a>
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=perks&amp;size=25&amp;sort=perks&amp;view=perks">
+              <div class='pull-right'>
+                <span class='badge'>103</span>
+              </div>
+              <i class='fa fa-suitcase'></i> Perks
+
+            </a>
+
           </div>
         </div>
-        <div className='panel panel-default'>
-          <div className='panel-heading'>
-            <h3 className='panel-title'>With</h3>
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <h3 class='panel-title'>With</h3>
           </div>
-          <div className='list-group'>
-            <RCFilter count={this.props.filters.bucket_intro_offers.doc_count} name="Introductory Offers" />
-            <RCFilter count={this.props.filters.bucket_bt_intro_offers.doc_count} name="Balance Transfer Offers" />
-            <RCFilter count={this.props.filters.bucket_special_offers.doc_count} name="Special Offers" />
-            <RCFilter count={this.props.filters.bucket_all_offers.doc_count} name="All Offers" />
+          <div class='list-group'>
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=intro_offers&amp;size=25&amp;sort=purchase_rate&amp;view=deals">
+              <div class='pull-right'>
+                <span class='badge'>16</span>
+              </div>
+              <i class='fa fa-leaf'></i> Introductory Offers
+
+            </a>
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=bt_intro_offers&amp;size=25&amp;sort=balance_transfer&amp;view=balance_transfers">
+              <div class='pull-right'>
+                <span class='badge'>135</span>
+              </div>
+              <i class='fa fa-exchange'></i> Balance Transfer Offers
+
+            </a>
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=special_offers&amp;size=25&amp;sort=special_offers&amp;view=deals">
+              <div class='pull-right'>
+                <span class='badge'>49</span>
+              </div>
+              <i class='fa fa-tags'></i> Special Offers
+
+            </a>
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=all_offers&amp;size=25&amp;sort=balance_transfer&amp;view=deals">
+              <div class='pull-right'>
+                <span class='badge'>136</span>
+              </div>
+              <i class='fa fa-check'></i> All Offers
+
+            </a>
+
           </div>
         </div>
-        <div className='panel panel-default'>
-          <div className='panel-heading'>
-            <h3 className='panel-title'>From</h3>
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <h3 class='panel-title'>From</h3>
           </div>
-          <div className='list-group'>
-            <RCFilter count={this.props.filters.bucket_big_four.doc_count} name="Big 4 Banks" />
-            <RCFilter count={""} name="Visa" />
-            <RCFilter count={""} name="MasterCard" />
-            <RCFilter count={""} name="American Express" />
-            <div className='list-group-item'>
+          <div class='list-group'>
+
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;buckets%5B%5D=big_four&amp;size=25&amp;sort=low_rates&amp;view=rates">
+              <div class='pull-right'>
+                <span class='badge'>34</span>
+              </div>
+              <i class='fa fa-bank'></i> Big 4 Banks
+
+            </a>
+
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;card_type%5B%5D=visa&amp;size=25">Visa
+
+</a>
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;card_type%5B%5D=mastercard&amp;size=25">MasterCard
+
+</a>
+            <a class="list-group-item" href="/credit-cards/search?boost_promoted=true&amp;card_type%5B%5D=american_express&amp;size=25">American Express
+
+</a>
+            <div class='list-group-item'>
               <select name="companies[]" id="company-selector" multiple="multiple" data-placeholder="Enter bank or provider name">
                 <option value="adcu">ADCU</option>
                 <option value="american-express">American Express</option>
