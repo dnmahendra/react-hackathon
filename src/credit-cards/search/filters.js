@@ -20,13 +20,13 @@ var RCFilters = React.createClass({
     this.setState({
       selectedFilters: filters
     });
-    this.props.onFiltersChanged(filters);
+    this.props.onFiltersChanged(filters, []);
   },
   isSelected : function(filter_name) {
     return this.state.selectedFilters.indexOf(filter_name) != -1;
   },
   getInitialState: function(){
-    return {selectedFilters: ["low_rates"]};
+    return {selectedFilters: ["low_rates"], selectedCards: []};
   },
   render: function() {
     return (
@@ -66,9 +66,9 @@ var RCFilters = React.createClass({
           </div>
           <div className='list-group'>
             <RCFilter count={this.props.filters.bucket_big_four.doc_count} id="big_four" name="Big 4 Banks" onClick={this.filterClickedCallback} selected={ this.isSelected("big_four") } />
-            <RCFilter count={""} name="Visa" />
-            <RCFilter count={""} name="MasterCard" />
-            <RCFilter count={""} name="American Express" />
+            <RCFilter count={""} name="Visa" id="visa" onClick={this.filterClickedCallback} selected={ this.isSelected("visa") } />
+            <RCFilter count={""} name="MasterCard" id="mastercard" onClick={this.filterClickedCallback} selected={ this.isSelected("mastercard") }  />
+            <RCFilter count={""} name="American Express" id="amex" onClick={this.filterClickedCallback} selected={ this.isSelected("amex") }  />
             <div className='list-group-item'>
               <select name="companies[]" id="company-selector" multiple="multiple" data-placeholder="Enter bank or provider name">
                 <option value="adcu">ADCU</option>
