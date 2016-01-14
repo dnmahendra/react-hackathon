@@ -15,7 +15,7 @@ var CreditCardService = {
     var card_type_term = {"term":{"visible":true}};
     if (search_details.card_types && search_details.card_types.length > 0) {
       card_type_term = {
-        "or": card_types.map(function(id){ return {"term": {"card_type": id}} })
+        "or": search_details.card_types.map(function(id){ return {"term": {"card_type": id}} })
       };
     }
     var companies_term = {"term":{"visible":true}};
