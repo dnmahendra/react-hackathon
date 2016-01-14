@@ -7,7 +7,6 @@ function removeFilter(filters, filter_name) {
   return filters.slice(0, index).concat(filters.slice(index+1, filters.count));
 }
 
-
 var RCFilters = React.createClass({
 
   filterClickedCallback : function(filter_name) {
@@ -20,7 +19,7 @@ var RCFilters = React.createClass({
     this.setState({
       selectedFilters: filters
     });
-    this.props.onFiltersChanged(filters, this.state.selectedCardTypes);
+    this.props.onFiltersChanged(filters, this.state.selectedCardTypes, []);
   },
   cardTypeClickedCallback : function(filter_name) {
     var cardTypes = this.state.selectedCardTypes;
@@ -32,7 +31,7 @@ var RCFilters = React.createClass({
     this.setState({
       selectedCardTypes: cardTypes
     });
-    this.props.onFiltersChanged(this.state.selectedFilters, cardTypes);
+    this.props.onFiltersChanged(this.state.selectedFilters, cardTypes, []);
   },
   isSelected : function(filter_name) {
     return this.state.selectedFilters.indexOf(filter_name) != -1;
