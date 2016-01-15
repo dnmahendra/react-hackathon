@@ -29,7 +29,7 @@ var RCPagination = React.createClass({
     this.props.onPaginationChanged(1);
   },
   prevClicked: function(page) {
-    this.props.onPaginationChanged(page - 1);
+    this.props.onPaginationChanged(this.props.currentPage - 1);
   },
   nextClicked: function(page) {
     this.props.onPaginationChanged(1);
