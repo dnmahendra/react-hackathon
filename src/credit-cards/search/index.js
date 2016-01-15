@@ -56,7 +56,7 @@ var RCSearchPage = React.createClass({
   render: function() {
     return (
       <main>
-        <RCResultsBar totalRecords={this.state.total} pagesize={10} currentpage={1} />
+        <RCResultsBar totalRecords={this.state.total} pagesize={25} currentpage={1} />
         <div className="container">
           <div className='row row-offcanvas row-offcanvas-left'>
             <aside id="rc-filters" className='col-md-3 facets sidebar-offcanvas'>

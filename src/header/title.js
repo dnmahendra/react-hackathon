@@ -7,8 +7,8 @@ var RCTitle = React.createClass({
       <div className='container'>
         <div className='page-heading'>
           <i className='icon icons-disc icon-credit-cards'></i>
-          <h1> <div style={{display:'inline'}}>Credit Cards </div>
-            <small className='hidden-sm hidden-xs'>Compare credit card interest rates and deals</small>
+           <h1><div style={{display:'inline'}}>{this.props.vertical}</div>
+            <small className='hidden-sm hidden-xs'>{this.props.children}</small>
           </h1>
         </div>
       </div>
