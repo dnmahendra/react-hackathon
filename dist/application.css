@@ -3,6 +3,10 @@
   cursor: pointer;
 }
 
+.sliders {
+  margin-left: 16px;
+}
+
 .owl-carousel .owl-wrapper:after {
     content: ".";
     display: block;

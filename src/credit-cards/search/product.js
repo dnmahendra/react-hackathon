@@ -7,6 +7,13 @@ import ReactDOM from 'react-dom';
 import CardTypes from './card-types'
 
 var RCProduct = React.createClass({
+  calculateATMWithdrawal: function(product) {
+
+    var amount = this.props.input.osSpendingAmount;
+    var atm_fee = Math.max(product.international_atm_dollar, product.international_atm_percent != null ?  product.international_atm_percent * amount / 100.0 : 0);
+    var conversion_fee = product.currency_conversion_fee != null ? amount * product.currency_conversion_fee / 100.0 : 0;
+    return conversion_fee + atm_fee;
+  },
   render: function() {
     var product = this.props.product;
 
@@ -85,7 +92,11 @@ var RCProduct = React.createClass({
             ${product.late_payment_fee_currency}
           </strong>
         </td>
-
+        <td className='text-center hidden-xs'>
+          <strong>
+            ${Math.round(this.calculateATMWithdrawal(product) * 100) / 100.0}
+          </strong>
+        </td>
         <td className='text-center xs-show-12'>
           {action_button}
         </td>

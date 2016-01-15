@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import RCFilters from './filters';
 import RCResults from './results';
+import RCSliders from './sliders';
 import RCResultsBar from './resultsbar';
 import RCPagination from './pagination';
 import CreditCardService from './credit_card_service';
@@ -26,7 +27,9 @@ var RCSearchPage = React.createClass({
       component.setState(queryResults);
     });
   },
-
+  osSpendingCallback : function(val) {
+    this.setState({input: {osSpendingAmount: val}});
+  },
   getInitialState: function(){
     return {
       filters: {
@@ -42,7 +45,11 @@ var RCSearchPage = React.createClass({
         bucket_all_offers: {doc_count: 0},
         bucket_big_four: {doc_count: 0}
       },
-      results: []
+      results: [],
+      input: {
+        osSpendingAmount: 100
+      }
+
     };
   },
 
@@ -53,10 +60,15 @@ var RCSearchPage = React.createClass({
         <div className="container">
           <div className='row row-offcanvas row-offcanvas-left'>
             <aside id="rc-filters" className='col-md-3 facets sidebar-offcanvas'>
-              <RCFilters filters={this.state.filters} onFiltersChanged={filtersChangedCallbackCreate(this)} />
+              <div id="rc-sliders">
+                <RCSliders osSpendingCallback={this.osSpendingCallback} />
+              </div>
+              <div id="rc-filters">
+                <RCFilters filters={this.state.filters} onFiltersChanged={filtersChangedCallbackCreate(this)} />
+              </div>
             </aside>
             <div id="rc-results" className="col-md-9">
-              <RCResults results={this.state.results} />
+              <RCResults results={this.state.results} input={this.state.input} />
               <RCPagination totalRecords={this.state.total} selected={8}/>
             </div>
           </div>
