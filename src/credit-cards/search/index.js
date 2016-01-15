@@ -7,14 +7,12 @@ import RCSliders from './sliders';
 import RCResultsBar from './resultsbar';
 import RCPagination from './pagination';
 import CreditCardService from './credit_card_service';
+import Query from './query';
 
 function filtersChangedCallbackCreate(component) {
-  return function(filters, card_types, companies) {
-    CreditCardService.find({
-      filters: filters,
-      card_types: card_types,
-      companies: companies
-    }, function (queryResults) {
+  return function(filters) {
+    CreditCardService.find(filters,
+    function (queryResults) {
       component.setState(queryResults);
     });
   }
@@ -36,12 +34,32 @@ function paginationChangedCallback(component) {
 var RCSearchPage = React.createClass({
   componentWillMount: function() {
     var component = this;
-    CreditCardService.find({filters: ['low_rates']}, function (queryResults) {
+    CreditCardService.find({filters: []}, function (queryResults) {
       component.setState(queryResults);
+    });
+  },
+  getCards : function() {
+    var component = this;
+    CreditCardService.find(Query.getDetails(),
+    function (queryResults) {
+      component.setState(queryResults);
+      component.setState({buckets: Query.getDetails()});
     });
   },
   osSpendingCallback : function(val) {
     this.setState({input: {osSpendingAmount: val}});
+  },
+  clearResults: function() {
+    Query.clearAll();
+    this.getCards();
+  },
+  filterToggle : function (filter_name) {
+    Query.toggleFilter(filter_name);
+    this.getCards();
+  },
+  cardToggle: function(card_tpe) {
+    Query.toggleCardType(card_tpe);
+    this.getCards();
   },
   getInitialState: function(){
     return {
@@ -61,15 +79,15 @@ var RCSearchPage = React.createClass({
       results: [],
       input: {
         osSpendingAmount: 100
-      }
-
+      },
+      buckets: {}
     };
   },
 
   render: function() {
     return (
       <main>
-        <RCResultsBar totalRecords={this.state.total} pagesize={25} currentpage={1} />
+        <RCResultsBar totalRecords={this.state.total} pagesize={25} currentpage={1} onclear={this.clearResults} />
         <div className="container">
           <div className='row row-offcanvas row-offcanvas-left'>
             <aside id="rc-filters" className='col-md-3 facets sidebar-offcanvas'>
@@ -77,7 +95,7 @@ var RCSearchPage = React.createClass({
                 <RCSliders osSpendingCallback={this.osSpendingCallback} />
               </div>
               <div id="rc-filters">
-                <RCFilters filters={this.state.filters} onFiltersChanged={filtersChangedCallbackCreate(this)} />
+                <RCFilters filters={this.state.filters} buckets={this.state.buckets} filterToggle={this.filterToggle} cardToggle={this.cardToggle} />
               </div>
             </aside>
             <div id="rc-results" className="col-md-9">
