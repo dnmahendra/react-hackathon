@@ -1,38 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import 'bootstrap-slider';
-
+import "./rangeslider.js"
 
 var RCSliders = React.createClass({
 
   componentDidMount: function() {
-    $('#ex1').slider({
-      formatter: function(value) {
-        return 'Current value: ' + value;
-      }
-    });
+    $('input[type="range"]').rangeslider();
   },
   numberChanged: function(value) {
     this.props.osSpendingCallback(value.target.value);
   },
-  getInitialState: function(){
+  getInitialState: function() {
     return {
     };
   },
   render: function() {
     return (
-        <div className='sliders'>
-          <div className='panel panel-default'>
-            <div className='panel-heading'>
-              <h3 className='panel-title'>
-                ATM Withdraw amount
-                <input type="number" onChange={this.numberChanged} />
-                <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
-              </h3>
-            </div>
+      <div className='sliders'>
+        <div className='panel panel-default'>
+          <div className='panel-heading'>
+            <h3 className='panel-title'>
+              ATM Withdraw amount
+              <input type="range" min="10" max="1000" step="10" value="300" onChange={this.numberChanged} data-orientation="vertical" />
+            </h3>
           </div>
         </div>
+      </div>
     );
   }
 });
