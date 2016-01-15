@@ -22,8 +22,8 @@ var RCSliders = React.createClass({
             <h3 className='panel-title'>
               ATM Withdraw amount
               <input type="range" min="50" max="1000" onChange={this.numberChanged} />
-              <span className="value-first">50</span>
-              <span className="value-last">1000</span>
+              <span className="value-first">$50</span>
+              <span className="value-last">$1000</span>
             </h3>
           </div>
         </div>
