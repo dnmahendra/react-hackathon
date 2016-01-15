@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import "./rangeslider.js"
+import rangeslider from "rangeslider";
 
 var RCSliders = React.createClass({
 
