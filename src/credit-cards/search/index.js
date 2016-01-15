@@ -20,12 +20,10 @@ function filtersChangedCallbackCreate(component) {
 
 function paginationChangedCallback(component) {
   return function(page) {
-    CreditCardService.find({
-      filters: component.state.filters,
-      card_types: component.state.card_types,
-      companies: component.state.companies,
-      page: page
-    }, function (queryResults) {
+    var params = Query.getDetails();
+    params["page"] = page;
+    console.log(params);
+    CreditCardService.find(params, function (queryResults) {
       component.setState(queryResults);
     });
   }
@@ -60,6 +58,9 @@ var RCSearchPage = React.createClass({
   cardToggle: function(card_tpe) {
     Query.toggleCardType(card_tpe);
     this.getCards();
+  },
+  paginationChanged: function() {
+
   },
   getInitialState: function(){
     return {
