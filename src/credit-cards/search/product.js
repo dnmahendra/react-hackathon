@@ -1,8 +1,5 @@
-// NOT IN ES:
-// - company logo
-
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Link } from 'react-router';
 
 import CardTypes from './card-types'
 
@@ -62,8 +59,9 @@ var RCProduct = React.createClass({
           <img className="img-responsive" src={product.company.logo.small.url}/>
         </td>
         <td className='xs-show-9 product-name'>
-          <a data-ga-send="event" data-ga-category="Search Result" data-ga-action="Product Title Click" data-ga-label="frank credit card" href={'/credit-cards/' + product.company.slug + '/' + product.slug }>{product.name}
-</a></td>
+          <Link to={`/product/${product.slug}`} data-ga-send="event" data-ga-category="Search Result" data-ga-action="Product Title Click" data-ga-label={product.name} >{product.name}</Link>
+
+          </td>
         <td className='text-center xs-show-3 xs-left'>
           <img className="img-responsive" src={card_type_logo} />
         </td>
