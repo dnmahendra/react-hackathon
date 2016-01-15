@@ -11,6 +11,10 @@
   float: right;
 }
 
+table.credit-card-table > tr {
+  height:100px;
+}
+
 .owl-carousel .owl-wrapper:after {
     content: ".";
     display: block;
@@ -16032,6 +16036,10 @@ footer {
 
 .credit-card-table {
     color: #3a3a3a
+}
+
+.credit-card-table>tbody>tr {
+  height:75px;
 }
 
 .credit-card-table>tbody>tr>td {

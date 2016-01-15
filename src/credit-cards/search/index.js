@@ -8,6 +8,7 @@ import RCResultsBar from './resultsbar';
 import RCPagination from './pagination';
 import CreditCardService from './credit_card_service';
 import Query from './query';
+import Sorter from './sorter';
 
 function filtersChangedCallbackCreate(component) {
   return function(filters) {
@@ -42,6 +43,7 @@ var RCSearchPage = React.createClass({
     });
   },
   osSpendingCallback : function(val) {
+    Sorter.sort(val, this.state.results);
     this.setState({input: {osSpendingAmount: val}});
   },
   clearResults: function() {
