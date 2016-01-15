@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import rangeslider from "rangeslider";
 
 var RCSliders = React.createClass({
 
   componentDidMount: function() {
-    $('input[type="range"]').rangeslider();
+
   },
   numberChanged: function(value) {
     this.props.osSpendingCallback(value.target.value);
@@ -22,7 +21,7 @@ var RCSliders = React.createClass({
           <div className='panel-heading'>
             <h3 className='panel-title'>
               ATM Withdraw amount
-              <input type="range" min="10" max="1000" step="10" value="300" onChange={this.numberChanged} data-orientation="vertical" />
+              <input type="range" onChange={this.numberChanged} />
             </h3>
           </div>
         </div>
