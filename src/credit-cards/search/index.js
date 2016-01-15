@@ -20,6 +20,19 @@ function filtersChangedCallbackCreate(component) {
   }
 }
 
+function paginationChangedCallback(component) {
+  return function(page) {
+    CreditCardService.find({
+      filters: component.state.filters,
+      card_types: component.state.card_types,
+      companies: component.state.companies,
+      page: page
+    }, function (queryResults) {
+      component.setState(queryResults);
+    });
+  }
+}
+
 var RCSearchPage = React.createClass({
   componentWillMount: function() {
     var component = this;
@@ -69,7 +82,10 @@ var RCSearchPage = React.createClass({
             </aside>
             <div id="rc-results" className="col-md-9">
               <RCResults results={this.state.results} input={this.state.input} />
-              <RCPagination totalRecords={this.state.total} selected={8}/>
+              <RCPagination totalRecords={this.state.total}
+                            currentPage={this.state.currentPage}
+                            pagesize={25}
+                            onPaginationChanged={paginationChangedCallback(this)}/>
             </div>
           </div>
         </div>
