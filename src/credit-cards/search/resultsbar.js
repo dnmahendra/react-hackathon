@@ -13,14 +13,13 @@ var RCResultsBar = React.createClass({
     }
     return output;
   },
-
   render: function() {
     return (
      <div className='container'>
         <div className='pullout pullout-lg hidden-xs'>
-          <a className="btn btn-default btn-icon col-md-2 pull-right" href="/credit-cards/search"><i className='fa fa-close pull-right'></i>
-  Clear All Filters
-  </a>
+          <a className="btn btn-default btn-icon col-md-2 pull-right" onClick={this.props.onclear}><i className='fa fa-close pull-right' ></i>
+            Clear All Filters
+          </a>
           <span className='p results-bar top'>
           {this.getDisplayText()}
           </span>
