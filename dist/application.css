@@ -11,6 +11,10 @@
   float: right;
 }
 
+.value-current {
+  margin-left: 50px;
+}
+
 table.credit-card-table > tr {
   height:100px;
 }

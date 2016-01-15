@@ -8,6 +8,7 @@ var RCSliders = React.createClass({
 
   },
   numberChanged: function(value) {
+    document.getElementById('value-current').innerHTML = ("$" + value.target.value);
     this.props.osSpendingCallback(value.target.value);
   },
   getInitialState: function() {
@@ -23,6 +24,7 @@ var RCSliders = React.createClass({
               ATM Withdraw amount
               <input type="range" min="50" max="500" onChange={this.numberChanged} />
               <span className="value-first">$50</span>
+              <span className="value-current" id="value-current">$300</span>
               <span className="value-last">$500</span>
             </h3>
           </div>
