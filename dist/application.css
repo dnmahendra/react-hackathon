@@ -7,6 +7,10 @@
   margin-left: 16px;
 }
 
+.value-last {
+  float: right;
+}
+
 .owl-carousel .owl-wrapper:after {
     content: ".";
     display: block;

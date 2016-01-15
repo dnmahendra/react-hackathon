@@ -31,10 +31,7 @@ function paginationChangedCallback(component) {
 
 var RCSearchPage = React.createClass({
   componentWillMount: function() {
-    var component = this;
-    CreditCardService.find({filters: []}, function (queryResults) {
-      component.setState(queryResults);
-    });
+    this.getCards();
   },
   getCards : function() {
     var component = this;
@@ -59,9 +56,6 @@ var RCSearchPage = React.createClass({
     Query.toggleCardType(card_tpe);
     this.getCards();
   },
-  paginationChanged: function() {
-
-  },
   getInitialState: function(){
     return {
       filters: {
@@ -79,7 +73,7 @@ var RCSearchPage = React.createClass({
       },
       results: [],
       input: {
-        osSpendingAmount: 100
+        osSpendingAmount: 300
       },
       buckets: {}
     };
